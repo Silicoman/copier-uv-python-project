@@ -1,0 +1,15 @@
+[project]
+name = "copier-uv-python-project"
+version = "0.1.0"
+description = "Scaffolding by copier of a python package"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "zensical>=0.0.44",
+    "copier>=9.15.1"
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]

@@ -1,0 +1,46 @@
+---
+
+# Copier configuration settings
+_min_copier_version: "9.15.1"
+_subdirectory: template
+_exclude:
+    - includes
+_message_after_copy: | 
+    Your package "{{ project_name }}" has been created successfully.
+
+_message_after_update: |
+    Your project "{{ project_name }}" has been updated successfully!
+    In case there are any conflicts, please resolve them. Then,
+    you're done.
+
+project_name:
+    type: str
+    help: What is the package name?
+    validator: >-
+        {% if not project_name %}
+        Name is required.
+        {% elif not (project_name | regex_search('^[a-zA-Z](?:[a-zA-Z0-9]| (?![ ]))*$')) %}
+        Only alphanumeric characters and single spaces are allowed.
+        {% endif %}
+
+description:
+    type: str
+    help: What does the package do?
+    placeholder: "..."
+
+python_version:
+    type: str
+    help: What Python version do you want to use?
+    default: "3.13.6"
+    validator: >-
+        {% if not python_version %}
+        python_version is required.
+        {% elif not (python_version | regex_search('^\\d+\\.\\d+\\.\\d+$')) %}
+        python_version must be in the form X.Y.Z (e.g. 3.13.6).
+        {% endif %}
+    when: true
+
+copyright_year:
+    type: str
+    default: "{{ copyright_year | default('%Y' | strftime) }}"
+    when: false

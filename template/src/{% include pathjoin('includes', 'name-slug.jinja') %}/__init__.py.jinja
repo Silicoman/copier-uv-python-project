@@ -1,0 +1,12 @@
+"""Package initialisation pour le projet généré.
+
+Ce fichier est rendu par Copier et expose la `main` et la classe principale.
+"""
+
+{% set ClassName = project_name | replace('-', ' ') | replace('_', ' ') | title | replace(' ', '') %}
+
+__all__ = ["{{ ClassName }}", "main", "__version__"]
+
+__version__ = "{{ version | default('0.0.0') }}"
+
+from .__main__ import {{ ClassName }}, main  # re-export pour simplicité
